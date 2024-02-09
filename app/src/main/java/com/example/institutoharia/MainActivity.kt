@@ -1,5 +1,4 @@
 package com.example.institutoharia
-
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -25,6 +24,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -39,12 +40,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.institutoharia.ui.theme.InstitutoHariaTheme
@@ -157,7 +154,7 @@ fun MiProyectos(
     )
 
 ){
-    MiForProyectos(imagenAsignatura, nombre, descripcion)
+    MiForProyectos(imagenAsignatura,nombre, descripcion)
 }
 
 @Composable
@@ -177,10 +174,11 @@ fun MiForProyectos(imagenAsignatura: List<Int>, nombre: List<String>, descripcio
                 imagen = imagenAsignatura[cadaItem],
                 nombre = nombre[cadaItem],
                 descripcion = descripcion[cadaItem],
-                expandir = expandirBox == cadaItem
+                expandirBox == cadaItem
             ) {
                 expandirBox = if (expandirBox == cadaItem) -1 else cadaItem
             }
+
         }
     }
 }
@@ -726,7 +724,7 @@ fun MiTitulo(texto: String, fontWeight: FontWeight, textAlign: TextAlign) {
 }
 
 @Composable
-fun MiContenido(texto: String, ) {
+fun MiContenido(texto: String) {
     Text(text = texto, fontSize = 16.sp, modifier = Modifier.padding(start = 8.dp, end = 4.dp))
     Spacer(modifier = Modifier.padding(6.dp))
 }
@@ -769,15 +767,29 @@ fun CadaAsignatura_Proyectos(
                 painter = painterResource(id = imagen),
                 contentDescription = nombre
             )
-
+            Row {
+                Text(text = nombre, fontSize = 20.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.weight(2f).padding(top = 8.dp))
+                IconButton(onClick = onItemClick) {
+                    if (!expandir ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.baseline_arrow_drop_down_24),
+                            contentDescription = null
+                        )
+                    } else {
+                        Icon(
+                            painter = painterResource(id = R.drawable.baseline_arrow_drop_up_24),
+                            contentDescription = null
+                        )
+                    }
+                }
+            }
             if (expandir) {
-                Spacer(modifier = Modifier.size(4.dp))
-                Text(text = nombre, fontSize = 20.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.size(4.dp))
                 Text(text = descripcion, modifier = Modifier.fillMaxWidth())
                 Spacer(modifier = Modifier.size(4.dp))
             }
         }
+
     }
 }
 /******************* GENERAL **********************/
