@@ -235,7 +235,7 @@ fun MisAsiganturasFPB1(
         R.drawable.cienciasaplicadas,
         R.drawable.comunicacionsociedad,
         R.drawable.equiposelectricos,
-        R.drawable.mantenimiento,
+        R.drawable.montaje,
     ),
     nombre: List<String> = listOf(
         "Ciencias Aplicadas I",
@@ -282,7 +282,7 @@ fun MiForAsignaturasFPB1(imagenAsignatura: List<Int>, nombre: List<String>, desc
 @Composable
 fun MisAsiganturasFPB2(
     imagenAsignatura: List<Int> = listOf(
-        R.drawable.montaje,
+        R.drawable.mantenimiento,
         R.drawable.explotacion,
         R.drawable.fct  ,
         R.drawable.comunicacionsociedad,
